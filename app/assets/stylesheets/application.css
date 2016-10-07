@@ -13,3 +13,23 @@
  *= require_tree .
  *= require_self
  */
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.inverse {
+   color: white;
+   background-color: #ff7d13;
+ }
+
+.heading {
+   color: #FF7D13
+ }
+
+ .subheading {
+   color: lightgray;
+ }
+
+ h2 span {
+   background-color: #CEFFE2;
+ }
