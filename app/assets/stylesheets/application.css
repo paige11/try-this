@@ -17,19 +17,11 @@ body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-.inverse {
+.inverse-orange {
    color: white;
    background-color: #ff7d13;
  }
 
-.heading {
-   color: #FF7D13
- }
-
- .subheading {
-   color: lightgray;
- }
-
- h2 span {
-   background-color: #CEFFE2;
+.orange {
+   color: #ff7d13;
  }
