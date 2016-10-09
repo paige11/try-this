@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
+  resources :users, only: [:show, :edit, :update, :destroy]
+
   resources :categories, only: [:show]
 
   resources :questions, except: :index

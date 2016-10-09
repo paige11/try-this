@@ -13,15 +13,22 @@
  *= require_tree .
  *= require_self
  */
+
+
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: darkgrey;
 }
 
-.inverse-orange {
-   color: white;
-   background-color: #ff7d13;
+.logo {
+   color: #e71d36;
+   font-size: 115%;
  }
 
-.orange {
-   color: #ff7d13;
+ .turquoise {
+   color: #2ec4b6;
+ }
+
+ .heading {
+   color: #ff9f1c;
  }
