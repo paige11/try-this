@@ -1,6 +1,7 @@
 class Category < ApplicationRecord
-  has_many :questions
+  has_many :category_questions
+  has_many :questions, through: :category_questions
   scope :alphabetize, -> { order(:name) }
-  scope :return_categories_for_form, -> { where("id in ?", category_ids) }
+
 
 end

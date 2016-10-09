@@ -6,10 +6,10 @@ Rails.application.routes.draw do
 
   resources :categories, only: [:show]
 
-  resources :questions, except: [:show]
+  resources :questions
 
   resources :solutions, except: [:show, :index, :new, :edit]
-  
+
   resources :questions, only: [:show] do
     resources :solutions, only: [:index, :new, :edit]
   end

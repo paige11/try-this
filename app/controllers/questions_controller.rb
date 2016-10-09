@@ -6,6 +6,10 @@ class QuestionsController < ApplicationController
   end
 
   def create
+    @question = Question.new(question_params)
+    @question.user_id = current_user.id
+    @question.save
+    redirect_to question_path(@question)
   end
 
   def edit
@@ -15,13 +19,14 @@ class QuestionsController < ApplicationController
   end
 
   def show
+    @question = Question.find(params[:id])
   end
 
   def destroy
   end
 
   def question_params
-    params.require(:question).permit(:content, category_ids: [])
+    params.require(:question).permit(:content, category_ids:[])
   end
 
 end
