@@ -14,5 +14,5 @@ class SolutionsController < ApplicationController
 
   def destroy
   end
-  
+
 end

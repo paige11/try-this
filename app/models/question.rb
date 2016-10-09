@@ -7,4 +7,13 @@ class Question < ApplicationRecord
   def self.ten_most_recent
     order(created_at: :desc).first(10)
   end
+
+  def self.most_recent
+    order(created_at: :desc)
+  end
+
+  def formatted_date
+    created_at.strftime("%b %e, %Y - %I:%M %p")
+  end
+
 end
