@@ -4,14 +4,8 @@ class Question < ApplicationRecord
   has_many :contributors, through: :solutions, class_name: "User"
   belongs_to :category
   validates_presence_of :content
-
-  def self.ten_most_recent
-    order(created_at: :desc).first(10)
-  end
-
-  def self.most_recent
-    order(created_at: :desc)
-  end
+  scope :most_recent, -> { order(created_at: :desc) }
+  scope :ten_most_recent, -> { most_recent.limit(10) }
 
   def formatted_date
     created_at.strftime("%b %e, %Y - %I:%M %p")
