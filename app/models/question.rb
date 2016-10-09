@@ -22,9 +22,11 @@ class Question < ApplicationRecord
   end
 
   def category_attributes=(category)
-    category = Category.find_or_create_by(name: category[:name])
-    categories << category
-    save
+    if !category[:name].empty?
+      category = Category.find_or_create_by(name: category[:name])
+      categories << category
+      save
+    end
   end
 
 end

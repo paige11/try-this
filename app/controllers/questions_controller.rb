@@ -15,6 +15,9 @@ class QuestionsController < ApplicationController
   end
 
   def edit
+    @question = Question.find(params[:id])
+    @question.categories.build
+    @categories = Category.all
   end
 
   def update
