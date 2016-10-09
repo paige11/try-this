@@ -16,7 +16,7 @@ class Question < ApplicationRecord
     category_ids.each do |cid|
       if !cid.empty?
         category = Category.find(cid)
-        categories << category
+        categories << category if !categories.include?(category)
       end
     end
   end
