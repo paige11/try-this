@@ -20,4 +20,8 @@ class QuestionsController < ApplicationController
   def destroy
   end
 
+  def question_params
+    params.require(:question).permit(:content, category_ids: [])
+  end
+
 end
