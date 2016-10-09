@@ -5,4 +5,13 @@ class Vote < ApplicationRecord
   scope :down, -> { where(direction: 'down') }
 
   # method to make sure person can't vote more than once
+
+  def upvoted_number
+    up.count
+  end
+
+  def downvoted_number
+    down.count
+  end
+
 end

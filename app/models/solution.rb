@@ -5,11 +5,12 @@ class Solution < ApplicationRecord
   validates_presence_of :content
 
   # for numbers on up and down buttons
-  def upvoted
-    votes.up.count
+  def upvotes
+    votes.upvoted_number
   end
 
-  def downvoted
-    votes.down.count
+  def downvotes
+    votes.downvoted_number
   end
+
 end
