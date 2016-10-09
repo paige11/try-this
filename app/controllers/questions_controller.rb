@@ -3,6 +3,7 @@ class QuestionsController < ApplicationController
 
   def new
     @question = Question.new
+    @categories = Category.all
   end
 
   def create
@@ -26,7 +27,7 @@ class QuestionsController < ApplicationController
   end
 
   def question_params
-    params.require(:question).permit(:content, category_ids:[])
+    params.require(:question).permit(:content, category_ids:[], category_attributes: [:name])
   end
 
 end
