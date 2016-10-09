@@ -3,6 +3,7 @@ class Question < ApplicationRecord
   belongs_to :user
   has_many :contributors, through: :solutions, class_name: "User"
   belongs_to :category
+  validates_presence_of :content
 
   def self.ten_most_recent
     order(created_at: :desc).first(10)
