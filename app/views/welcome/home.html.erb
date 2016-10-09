@@ -4,7 +4,7 @@
   <h3>Here are the most recent questions from users:</h3>
 
   <% @questions.each do |q| %>
-    <%= link_to q.content, question_path(q) %>
+    <p><%= link_to q.content, question_path(q) %></p>
   <% end %>
 
 </div>
