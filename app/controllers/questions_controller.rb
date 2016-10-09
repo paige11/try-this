@@ -2,6 +2,7 @@ class QuestionsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:show]
 
   def new
+    @question = Question.new
   end
 
   def create
