@@ -1,14 +1,14 @@
 <div class="container-fluid">
   <h1 class="turquoise">Welcome, <%= @user_greeting %></h1>
 
+  <br />
+  <%= button_to "Ask a Question", new_question_path, class: "btn btn-primary", method: :get %>
+
   <h3>Here are the most recent questions from users:</h3>
 
   <% @questions.each do |question| %>
     <p><%= link_to question.content, question_path(question) %></p>
   <% end %>
-
-  <br />
-  <%= button_to "Ask a Question", new_question_path, class: "btn btn-primary", method: :get %>
 
   <h3>Browse by category:</h3>
   <% @categories.each do |category| %>
