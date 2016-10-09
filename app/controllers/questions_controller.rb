@@ -3,6 +3,7 @@ class QuestionsController < ApplicationController
 
   def new
     @question = Question.new
+    @question.categories.build
     @categories = Category.all
   end
 

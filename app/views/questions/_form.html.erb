@@ -4,6 +4,9 @@
   <p><%= f.label "Categories" %></p>
   <%= f.collection_check_boxes :category_ids, categories, :id, :name %><br>
   <p><%= f.label "Or create a new category"%></p>
-  <%= f.fields_for  %>
+  <%= f.fields_for :category_attributes do |category| %>
+    <%= category.label :name %>
+    <%= category.text_field :name %><br>
+  <% end %>
   <%= f.submit %>
 <% end %>

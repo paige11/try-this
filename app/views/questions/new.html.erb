@@ -1,7 +1,9 @@
-<h1 class="turquoise">Ask a Question</h1>
+<div class="container-fluid">
+  <%= link_to :back do %>
+    <i class="ion-android-arrow-back"></i> Back
+  <% end %>
 
-<%= link_to :back do %>
-  <i class="ion-android-arrow-back"></i> Back
-<% end %>
+  <h1 class="turquoise">Ask a Question</h1>
 
-<%= render partial: 'form', locals: {question: @question, categories: @categories} %>
+  <%= render partial: 'form', locals: {question: @question, categories: @categories} %>
+</div>
