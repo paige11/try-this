@@ -5,6 +5,6 @@ class Question < ApplicationRecord
   belongs_to :category
 
   def self.ten_most_recent
-    all.order(:created_at).first(10)
+    order(:created_at).first(10)
   end
 end
