@@ -5,10 +5,10 @@ class Solution < ApplicationRecord
 
   # for numbers on up and down buttons
   def upvoted
-    votes.where("direction = 'up'").count
+    votes.up.count
   end
 
   def downvoted
-    votes.where("direction = 'down'").count
+    votes.down.count
   end
 end
