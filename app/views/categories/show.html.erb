@@ -1,4 +1,9 @@
 <div class="container-fluid">
+
+  <%= link_to :back do %>
+    <i class="ion-android-arrow-back"></i> Back
+  <% end %>
+
   <h1 class="turquoise"><%= @category.name %></h1>
   <%= button_to "Ask a Question", new_question_path, class: "btn btn-primary", method: :get %><br />
 
