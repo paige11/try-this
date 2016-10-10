@@ -5,7 +5,7 @@
 
   <h3><%= @question.content %></h3>
   <p>
-    Submitted by: <%= link_to @question.user.first_name, user_path(@question.user) %>,
+    Submitted by <%= link_to @question.user.first_name, user_path(@question.user) %>,
     <%= @question.formatted_date_time %>
   </p>
 
