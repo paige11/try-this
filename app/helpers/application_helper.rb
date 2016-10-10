@@ -7,5 +7,13 @@ module ApplicationHelper
       "Guest"
     end
   end
-  
+
+  def user_or_guest_link
+    if current_user
+      user_path(current_user)
+    else
+      root_path
+    end
+  end
+
 end

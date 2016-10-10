@@ -9,15 +9,15 @@ class Question < ApplicationRecord
   scope :most_recent, -> { order(created_at: :desc) }
   scope :ten_most_recent, -> { most_recent.limit(10) }
 
-  def formatted_date
-    created_at.strftime("%b %e, %Y - %I:%M %p")
+  def formatted_date_time
+    created_at.strftime("%m-%d-%Y, %R")
   end
 
   def category_ids=(category_ids)
     categories.clear
-    category_ids.each do |cid|
-      if !cid.empty?
-        category = Category.find(cid)
+    category_ids.each do |category_id|
+      if !category_id.empty?
+        category = Category.find(category_id)
         categories << category if !categories.include?(category)
       end
     end

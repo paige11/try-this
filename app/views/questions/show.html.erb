@@ -12,10 +12,25 @@
 
   <br></br>
 
-  <% @question.solutions.each do |solution| %>
+  <% @solutions.each do |solution| %>
     <!-- link to user profile -->
     <p>
-      <%= solution.contributor.first_name %> says: <%= solution.content %>
+      <i><%= solution.formatted_date_time %>
+      <%= solution.contributor.first_name %> says:</i> <%= solution.content %>
+      <% if current_user %>
+        <%= form_for @vote, url: votes_path, method: :post do |f| %>
+          <%= f.hidden_field :direction, value: "up" %>
+          <%= f.hidden_field :user_id, value: current_user.id %>
+          <%= f.hidden_field :solution_id, value: solution.id %>
+          <%= f.submit "Upvote #{solution.votes.up_count}" %>
+        <% end %>
+        <%= form_for @vote, url: votes_path, method: :post do |f| %>
+          <%= f.hidden_field :direction, value: "down" %>
+          <%= f.hidden_field :user_id, value: current_user.id %>
+          <%= f.hidden_field :solution_id, value: solution.id %>
+          <%= f.submit "Downvote #{solution.votes.down_count}" %>
+        <% end %>
+      <% end %>
     </p>
   <% end %>
 </div>

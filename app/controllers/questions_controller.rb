@@ -26,6 +26,8 @@ class QuestionsController < ApplicationController
 
   def show
     @question = Question.find(params[:id])
+    @solutions = @question.solutions
+    @vote = Vote.new
   end
 
   def destroy

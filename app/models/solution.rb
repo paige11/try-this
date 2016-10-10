@@ -4,13 +4,12 @@ class Solution < ApplicationRecord
   has_many :votes
   validates_presence_of :content
 
-  # for numbers on up and down buttons
-  def upvotes
-    votes.upvoted_number
+  def formatted_date_time
+    created_at.strftime("%m-%d-%Y, %R")
   end
 
-  def downvotes
-    votes.downvoted_number
+  def self.most_upvotes
+    # to do
   end
 
 end
