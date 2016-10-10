@@ -32,8 +32,9 @@ class QuestionsController < ApplicationController
 
   def destroy
     @question = Question.find(params[:id])
+    # delete all solutions and votes associated with this question?
     @question.delete
-    redirect_to questions_path
+    redirect_to root_path
   end
 
   def question_params
