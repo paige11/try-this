@@ -16,21 +16,21 @@
     <br></br>
     Email: <%= @user.email %>
     <br></br>
-    Member Since:
+    Member Since: <%= @user.formatted_date_time %>
   </p>
 
   <% if @user.id == current_user.id %>
-    <%= button_to "Edit Profile", new_question_path, class: "btn btn-primary", method: :get %>
+    <%= button_to "Edit Profile", edit_user_registration_path, class: "btn btn-primary", method: :get %>
   <% end %>
 
-  <h2>Questions ()</h2>
-  <% @user.questions.each do |question| %>
-    <p><%= link_to question.content, question_path(question) %></p>
+  <h2>Questions (<%= @user.question_count %>)</h2>
+  <% @questions.each do |question| %>
+    <p><%= link_to question.content, question_path(question) %> <%= question.formatted_date_time %></p>
   <% end %>
 
-  <h2>Answers ()</h2>
-  <% @user.solutions.each do |solution| %>
-    <p><%= link_to solution.content, question_path(solution.question) %></p>
+  <h2>Answers (<%= @user.solution_count %>)</h2>
+  <% @solutions.each do |solution| %>
+    <p><%= link_to solution.content, question_path(solution.question) %> <%= solution.formatted_date_time %></p>
   <% end %>
 
 </div>

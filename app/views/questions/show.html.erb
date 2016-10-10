@@ -30,7 +30,15 @@
           <%= f.hidden_field :solution_id, value: solution.id %>
           <%= f.submit "Downvote #{solution.votes.down_count}" %>
         <% end %>
+        <% if current_user %>
+          <%= button_to "Edit Answer", new_question_solution_path(@question), class: "btn btn-primary", method: :get %>
+          <%= button_to "Delete Answer", new_question_solution_path(@question), class: "btn btn-primary", method: :get %>
+        <% end %>
       <% end %>
     </p>
   <% end %>
+
+  <br></br>
+  <%= button_to "Submit an Answer", new_question_solution_path(@question), class: "btn btn-primary", method: :get %>
+
 </div>

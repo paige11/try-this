@@ -13,4 +13,17 @@ class User < ApplicationRecord
       user.password = Devise.friendly_token[0,20]
     end
   end
+
+  def formatted_date_time
+    created_at.strftime("%b %e, %Y")
+  end
+
+  def question_count
+    questions.count
+  end
+
+  def solution_count
+    solutions.count
+  end
+
 end
