@@ -25,13 +25,13 @@
           <%= f.hidden_field :direction, value: "up" %>
           <%= f.hidden_field :user_id, value: current_user.id %>
           <%= f.hidden_field :solution_id, value: solution.id %>
-          <%= f.submit "Upvote #{solution.votes.up_count}" %>
+          <%= f.submit "Upvote #{solution.votes.up_count}", class: "btn btn-primary" %>
         <% end %>
         <%= form_for @vote, url: votes_path, method: :post do |f| %>
           <%= f.hidden_field :direction, value: "down" %>
           <%= f.hidden_field :user_id, value: current_user.id %>
           <%= f.hidden_field :solution_id, value: solution.id %>
-          <%= f.submit "Downvote #{solution.votes.down_count}" %>
+          <%= f.submit "Downvote #{solution.votes.down_count}", class: "btn btn-primary" %>
         <% end %>
         <% if current_user == solution.contributor %>
           <%= button_to "Edit Answer", edit_question_solution_path(@question, solution), class: "btn btn-primary", method: :get %>

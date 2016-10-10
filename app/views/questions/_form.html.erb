@@ -5,5 +5,5 @@
   <%= f.fields_for :category_attributes do |category| %>
     New Category <%= category.text_field :name, label: :name %><br>
   <% end %>
-  <%= f.submit "Submit" %>
+  <%= f.submit "Submit", class: "btn btn-primary" %>
 <% end %>
