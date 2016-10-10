@@ -22,7 +22,7 @@ class SolutionsController < ApplicationController
 
   def destroy
     @solution = Solution.find(params[:id])
-    @solution.delete
+    @solution.destroy
     redirect_to question_path(@solution.question)
   end
 
