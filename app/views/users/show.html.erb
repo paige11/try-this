@@ -4,6 +4,33 @@
     <i class="ion-android-arrow-back"></i> Back
   <% end %>
 
-  <h1><%= @user.email %></h1>
+  <% if @user.id == current_user.id %>
+    <h2>My Profile</h2>
+  <% else %>
+    <h2><%= @user.email %></h2>
+  <% end %>
+
+  <p>
+    Name: <%= @user.first_name if @user.first_name %>
+    <%= @user.last_name if @user.last_name %>
+    <br></br>
+    Email: <%= @user.email %>
+    <br></br>
+    Member Since:
+  </p>
+
+  <% if @user.id == current_user.id %>
+    <%= button_to "Edit Profile", new_question_path, class: "btn btn-primary", method: :get %>
+  <% end %>
+
+  <h2>Questions ()</h2>
+  <% @user.questions.each do |question| %>
+    <p><%= link_to question.content, question_path(question) %></p>
+  <% end %>
+
+  <h2>Answers ()</h2>
+  <% @user.solutions.each do |solution| %>
+    <p><%= link_to solution.content, question_path(solution.question) %></p>
+  <% end %>
 
 </div>
