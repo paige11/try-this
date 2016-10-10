@@ -2,5 +2,5 @@
   <%= f.hidden_field :contributor_id, value: current_user.id %>
   <%= f.hidden_field :question_id, value: params[:question_id] %>
   Answer <%= f.text_field :content, label: :content %><br>
-  <%= f.submit %>
+  <%= f.submit "Submit" %>
 <% end %>
