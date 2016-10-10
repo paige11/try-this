@@ -26,6 +26,8 @@ class SolutionsController < ApplicationController
     redirect_to question_path(@solution.question)
   end
 
+  private
+
   def solution_params
     params.require(:solution).permit(:content, :question_id, :contributor_id)
   end

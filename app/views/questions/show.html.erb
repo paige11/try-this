@@ -17,7 +17,6 @@
   <br></br>
 
   <% @solutions.each do |solution| %>
-    <!-- link to user profile -->
     <p>
       <i><%= solution.formatted_date_time %>
       <%= solution.contributor.first_name %> says:</i> <%= solution.content %>

@@ -7,6 +7,8 @@ class VotesController < ApplicationController
     redirect_to question_path(vote.solution.question)
   end
 
+  private
+
   def vote_params
     params.require(:vote).permit(:direction, :user_id, :solution_id)
   end
