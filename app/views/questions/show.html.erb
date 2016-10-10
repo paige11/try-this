@@ -19,7 +19,7 @@
   <% @solutions.each do |solution| %>
     <p>
       <i><%= solution.formatted_date_time %>
-      <%= solution.contributor.first_name %> says:</i> <%= solution.content %>
+      <%= link_to solution.contributor.first_name, user_path(solution.contributor) %> says:</i> <%= solution.content %>
       <% if current_user %>
         <%= form_for @vote, url: votes_path, method: :post do |f| %>
           <%= f.hidden_field :direction, value: "up" %>
