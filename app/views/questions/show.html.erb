@@ -1,8 +1,21 @@
-<%= link_to :back do %>
-  <i class="ion-android-arrow-back"></i> Back
-<% end %>
+<div class="container-fluid">
+  <%= link_to :back do %>
+    <i class="ion-android-arrow-back"></i> Back
+  <% end %>
 
-<%= @question.content %>
-<% @question.categories.each do |cat| %>
-  <%= cat.name %>
-<% end %>
+  <h3><%= @question.content %></h3>
+
+  Categories:
+  <% @question.categories.each do |category| %>
+    <%= link_to category.name, category_path(category) %>
+  <% end %>
+
+  <br></br>
+
+  <% @question.solutions.each do |solution| %>
+    <!-- link to user profile -->
+    <p>
+      <%= solution.contributor.first_name %> says: <%= solution.content %>
+    </p>
+  <% end %>
+</div>
