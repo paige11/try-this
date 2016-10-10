@@ -1,11 +1,9 @@
 <%= form_for question do |f| %>
   <%= f.hidden_field :user_id, value: current_user.id %>
-  <%= f.label :content %>
-  <%= f.text_field :content %><br>
-  <%= f.collection_check_boxes :category_ids, categories, :id, :name %><br>
+  Question <%= f.text_field :content, label: :content %><br>
+  Categories <%= f.collection_check_boxes :category_ids, categories, :id, :name %><br>
   <%= f.fields_for :category_attributes do |category| %>
-    <%= category.label :name %>
-    <%= category.text_field :name %><br>
+    New Category <%= category.text_field :name, label: :name %><br>
   <% end %>
   <%= f.submit %>
 <% end %>
