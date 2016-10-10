@@ -11,12 +11,18 @@ class SolutionsController < ApplicationController
   end
 
   def edit
+    @solution = Solution.find(params[:id])
   end
 
   def update
+    @solution = Solution.find(params[:id])
+    @solution.update(solution_params)
+    redirect_to question_path(@solution.question)
   end
 
   def destroy
+    @solution = Solution.find(params[:id])
+    @solution.delete
   end
 
   def solution_params
