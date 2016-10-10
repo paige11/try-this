@@ -8,9 +8,7 @@ class QuestionsController < ApplicationController
   end
 
   def create
-    @question = Question.new(question_params)
-    @question.user_id = current_user.id
-    @question.save
+    @question = Question.create(question_params)
     redirect_to question_path(@question)
   end
 
@@ -37,7 +35,7 @@ class QuestionsController < ApplicationController
   end
 
   def question_params
-    params.require(:question).permit(:content, category_ids:[], category_attributes: [:name])
+    params.require(:question).permit(:user_id, :content, category_ids:[], category_attributes: [:name])
   end
 
 end

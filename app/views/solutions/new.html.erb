@@ -1,3 +1,12 @@
-<%= link_to :back do %>
-  <i class="ion-android-arrow-back"></i> Back
-<% end %>
+<div class="container-fluid">
+  <%= link_to :back do %>
+    <i class="ion-android-arrow-back"></i> Back
+  <% end %>
+
+  <h2>Add a Solution</h2>
+
+  Question: <%= @question.content %><br><br>
+
+  <%= render partial: 'form', locals: {solution: @solution}%>
+
+</div>

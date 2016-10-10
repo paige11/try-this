@@ -16,23 +16,11 @@
 
 
 body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  color: darkgrey;
+  font-family: "Avenir";
 }
 
 .logo {
-   color: #9a0026;
-   font-size: 115%;
- }
-
- .turquoise {
-   color: #2ec4b6;
- }
-
- .heading {
-   color: #ff9f1c;
- }
-
-.submit {
-   color: white;
+   color: #EBA53D;
+   font-size: 185%;
+   font-family: "Lobster"
  }

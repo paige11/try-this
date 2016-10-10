@@ -1,0 +1,7 @@
+<%= form_for solution do |f| %>
+  <%= f.hidden_field :contributor_id, value: current_user.id %>
+  <%= f.hidden_field :question_id, value: params[:question_id] %>
+  <%= f.label :content %>
+  <%= f.text_field :content %><br>
+  <%= f.submit %>
+<% end %>
