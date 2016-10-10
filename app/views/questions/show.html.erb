@@ -4,22 +4,27 @@
   <% end %>
 
   <h3><%= @question.content %></h3>
-  <% if current_user == @question.user %>
-    <%= button_to "Edit Question", edit_question_path(@question), class: "btn btn-primary", method: :get %>
-    <%= button_to "Delete Question", question_path(@question), class: "btn btn-primary", method: :delete %>
-  <% end %>
+  <p>
+    Submitted by: <%= link_to @question.user.first_name, user_path(@question.user) %>,
+    <%= @question.formatted_date_time %>
+  </p>
 
   Categories:
   <% @question.categories.each do |category| %>
     <%= link_to category.name, category_path(category) %>
   <% end %>
 
+  <% if current_user == @question.user %>
+    <%= button_to "Edit Question", edit_question_path(@question), class: "btn btn-primary", method: :get %>
+    <%= button_to "Delete Question", question_path(@question), class: "btn btn-primary", method: :delete %>
+  <% end %>
+
   <br></br>
 
   <% @solutions.each do |solution| %>
     <p>
-      <i><%= solution.formatted_date_time %>
-      <%= link_to solution.contributor.first_name, user_path(solution.contributor) %> says:</i> <%= solution.content %>
+      <%= solution.formatted_date_time %>
+      <%= link_to solution.contributor.first_name, user_path(solution.contributor) %> says: <%= solution.content %>
       <% if current_user %>
         <%= form_for @vote, url: votes_path, method: :post do |f| %>
           <%= f.hidden_field :direction, value: "up" %>
