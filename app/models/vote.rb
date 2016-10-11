@@ -3,6 +3,7 @@ class Vote < ApplicationRecord
   belongs_to :solution
   scope :up_count, -> { where(direction: 'up').count }
   scope :down_count, -> { where(direction: 'down').count }
+  after_create :add_to_total_votes
 
   def determine_vote_direction(user_choice)
     if self.direction == user_choice
@@ -12,4 +13,11 @@ class Vote < ApplicationRecord
     end
   end
 
+private
+
+  def add_to_total_votes
+    q = self.solution.question
+    q.total_votes += 1
+    q.save
+  end
 end
