@@ -8,6 +8,7 @@ class Question < ApplicationRecord
   validates_uniqueness_of :content
   scope :most_recent, -> { order(created_at: :desc) }
   scope :ten_most_recent, -> { most_recent.limit(10) }
+  scope :order_by_votes, -> { order(total_votes: :desc).limit(10) }
 
   def formatted_date_time
     created_at.strftime("%m-%d-%Y, %R")

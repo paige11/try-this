@@ -6,9 +6,9 @@ Rails.application.routes.draw do
 
   resources :categories, only: [:show]
 
-  resources :questions
+  resources :questions, except: [:index]
 
-  resources :solutions, except: [:show, :index, :new, :edit]
+  resources :solutions, only: [:create, :update]
 
   resources :votes, only: [:create]
 

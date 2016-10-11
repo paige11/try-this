@@ -7,7 +7,17 @@
   <h3>Here are the most recent questions from users:</h3>
 
   <% @questions.each do |question| %>
-    <p><%= link_to question.content, question_path(question) %> Submitted by <%= link_to question.user.username_or, user_path(question.user) %>, <%= question.formatted_date_time %></p>
+    <p>
+      <%= link_to question.content, question_path(question) %> Submitted by <%= link_to question.user.username_or, user_path(question.user) %>, <%= question.formatted_date_time %>
+    </p>
+  <% end %>
+
+  <h3>Here are the most popular questions (most votes):</h3>
+
+  <% @popular.each do |question| %>
+    <p>
+      <%= link_to question.content, question_path(question) %> Submitted by <%= link_to question.user.username_or, user_path(question.user) %>, <%= question.formatted_date_time %>
+    </p>
   <% end %>
 
   <h3>Browse questions by category:</h3>

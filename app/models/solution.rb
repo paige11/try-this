@@ -10,8 +10,4 @@ class Solution < ApplicationRecord
     created_at.strftime("%m-%d-%Y, %R")
   end
 
-  def self.most_upvotes
-    joins(:votes).where()
-  end
-
 end
