@@ -5,7 +5,7 @@
 
   <h3><%= @question.content %></h3>
   <p>
-    Submitted by <%= link_to @question.user.first_name, user_path(@question.user) %>,
+    Submitted by <%= link_to @question.user.username_or, user_path(@question.user) %>,
     <%= @question.formatted_date_time %>
   </p>
 
@@ -24,7 +24,7 @@
   <% @solutions.each do |solution| %>
     <p>
       <%= solution.formatted_date_time %>
-      <%= link_to solution.contributor.first_name, user_path(solution.contributor) %> says: <%= solution.content %>
+      <%= link_to solution.contributor.username_or, user_path(solution.contributor) %> says: <%= solution.content %>
       <% if current_user %>
         <%= form_for @vote, url: votes_path, method: :post do |f| %>
           <%= f.hidden_field :direction, value: "up" %>

@@ -6,5 +6,5 @@ class WelcomeController < ApplicationController
     @questions = Question.ten_most_recent
     @categories = Category.alphabetize
   end
-  
+
 end

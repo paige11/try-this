@@ -26,4 +26,12 @@ class User < ApplicationRecord
     solutions.count
   end
 
+  def username_or
+    if username
+      username
+    else
+      "User"
+    end
+  end
+
 end

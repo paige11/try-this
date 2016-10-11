@@ -2,7 +2,7 @@ module ApplicationHelper
 
   def user_or_guest_greeting
     if current_user
-      current_user.username
+      current_user.username || "User"
     else
       "Guest"
     end
