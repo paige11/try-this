@@ -4,7 +4,7 @@ class Vote < ApplicationRecord
   scope :up_count, -> { where(direction: 'up').count }
   scope :down_count, -> { where(direction: 'down').count }
   after_create :add_to_total_votes
-  validates_presence_of :solution_id, :user_id, :direction
+  validates_presence_of :solution_id, :user_id
 
   def determine_vote_direction(user_choice)
     if self.direction == user_choice

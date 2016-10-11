@@ -16,4 +16,8 @@ module ApplicationHelper
     end
   end
 
+  def formatted_date_time
+    created_at.strftime("%m-%d-%Y, %R")
+  end
+
 end

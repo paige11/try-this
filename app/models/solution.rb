@@ -5,9 +5,6 @@ class Solution < ApplicationRecord
   validates_presence_of :content
   validates_uniqueness_of :content
   scope :most_recent, -> { order(created_at: :desc) }
-
-  def formatted_date_time
-    created_at.strftime("%m-%d-%Y, %R")
-  end
-
+  include ApplicationHelper
+  
 end

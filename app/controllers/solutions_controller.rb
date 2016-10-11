@@ -6,8 +6,12 @@ class SolutionsController < ApplicationController
   end
 
   def create
-    @solution = Solution.create(solution_params)
-    redirect_to question_path(@solution.question)
+    @solution = Solution.new(solution_params)
+    if @solution.save
+      redirect_to question_path(@solution.question)
+    else
+      render 'new'
+    end
   end
 
   def edit
