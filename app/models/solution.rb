@@ -10,7 +10,7 @@ class Solution < ApplicationRecord
   end
 
   def self.most_upvotes
-    # to do
+    # TO DO
   end
 
 end

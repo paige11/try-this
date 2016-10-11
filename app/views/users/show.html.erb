@@ -25,12 +25,12 @@
 
   <h2>Questions (<%= @user.question_count %>)</h2>
   <% @questions.each do |question| %>
-    <p><%= link_to question.content, question_path(question) %> <%= question.formatted_date_time %></p>
+    <p><%= link_to question.content, question_path(question) %>, <%= question.formatted_date_time %></p>
   <% end %>
 
   <h2>Answers (<%= @user.solution_count %>)</h2>
   <% @solutions.each do |solution| %>
-    <p><%= link_to solution.content, question_path(solution.question) %> <%= solution.formatted_date_time %></p>
+    <p><%= link_to solution.question.content, question_path(solution.question) %>, <%= solution.formatted_date_time %></p>
   <% end %>
 
 </div>
