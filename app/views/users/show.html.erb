@@ -7,12 +7,10 @@
   <% if @user.id == current_user.id %>
     <h2>My Profile</h2>
   <% else %>
-    <h2><%= @user.email %></h2>
+    <h2><%= @user.username_or %></h2>
   <% end %>
 
   <p>
-    Username: <%= @user.username_or %>
-    <br></br>
     Email: <%= @user.email %>
     <br></br>
     Member Since: <%= @user.formatted_date_time %>
