@@ -10,7 +10,7 @@ class Solution < ApplicationRecord
   end
 
   def self.most_upvotes
-    # TO DO
+    joins(:votes).where()
   end
 
 end

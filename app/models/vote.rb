@@ -11,4 +11,5 @@ class Vote < ApplicationRecord
       self.direction = user_choice
     end
   end
+
 end

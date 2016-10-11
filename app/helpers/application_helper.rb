@@ -2,7 +2,7 @@ module ApplicationHelper
 
   def user_or_guest_greeting
     if current_user
-      current_user.first_name || current_user.email
+      current_user.username
     else
       "Guest"
     end
@@ -12,7 +12,7 @@ module ApplicationHelper
     if current_user
       user_path(current_user)
     else
-      root_path
+      new_user_registration_path
     end
   end
 
