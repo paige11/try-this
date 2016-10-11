@@ -1,6 +1,5 @@
 class Question < ApplicationRecord
   has_many :solutions, dependent: :destroy
-  
   belongs_to :user
   has_many :contributors, through: :solutions, class_name: "User"
   has_many :category_questions

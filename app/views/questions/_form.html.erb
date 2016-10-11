@@ -1,9 +1,20 @@
 <%= form_for question do |f| %>
+
+  <% if question.errors.any? %>
+      <h2><%= pluralize(question.errors.count, "error") %> prohibited this card from being saved:</h2>
+
+    <ul>
+      <% question.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
   <%= f.hidden_field :user_id, value: current_user.id %>
 
   Question <%= f.text_field :content, label: :content %><br>
 
-  Categories <%= f.collection_check_boxes :category_ids, categories, :id, :name %><br>
+  Categories <%= f.collection_check_boxes :category_ids, Category.all, :id, :name %><br>
 
   <%= f.fields_for :category_attributes do |category| %>
     New Category <%= category.text_field :name, label: :name %><br>
