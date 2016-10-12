@@ -7,6 +7,6 @@
 
   Question: <%= @question.content %><br><br>
 
-  <%= render partial: 'form', locals: {solution: @solution}%>
+  <%= render partial: 'form', locals: {solution: @solution, question: @question}%>
 
 </div>

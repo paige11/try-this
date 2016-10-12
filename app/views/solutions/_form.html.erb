@@ -1,4 +1,13 @@
-<%= form_for solution do |f| %>
+<%= form_for [question, solution] do |f| %>
+  <% if solution.errors.any? %>
+      <h2><%= pluralize(solution.errors.count, "error") %> prohibited this card from being saved:</h2>
+
+    <ul>
+      <% solution.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  <% end %>
 
   <%= f.hidden_field :contributor_id, value: current_user.id %>
 

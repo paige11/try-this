@@ -8,13 +8,13 @@ Rails.application.routes.draw do
 
   resources :questions, except: [:index]
 
-  resources :solutions, only: [:create, :update, :destroy]
+  resources :solutions, only: [:destroy]
 
   resources :votes, only: [:create]
 
   resources :users, only: [:show]
 
   resources :questions, only: [:show] do
-    resources :solutions, only: [:index, :new, :edit]
+    resources :solutions, only: [:index, :new, :edit, :update, :create]
   end
 end
