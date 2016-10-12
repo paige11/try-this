@@ -6,6 +6,7 @@ class User < ApplicationRecord
   has_many :questions
   has_many :solutions, foreign_key: :contributor_id
   has_many :votes
+  validates_uniqueness_of :username
   include ApplicationHelper
 
   def self.from_omniauth(auth)
