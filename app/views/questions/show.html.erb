@@ -1,52 +1,49 @@
-<div class="container-fluid">
-  <%= link_to :back do %>
-    <i class="ion-android-arrow-back"></i> Back
-  <% end %>
+<%= link_to :back do %>
+  <i class="ion-android-arrow-back"></i> Back
+<% end %>
 
-  <h3><%= @question.content %></h3>
+<h3><%= @question.content %></h3>
+<p>
+  Submitted by <%= link_to @question.user.username_or, user_path(@question.user) %>,
+  <%= @question.formatted_date_time %>
+</p>
+
+Categories:
+<% @question.categories.each do |category| %>
+  <%= link_to category.name, category_path(category) %>
+<% end %>
+
+<% if current_user == @question.user %>
+  <%= button_to "Edit Question", edit_question_path(@question), class: "btn btn-primary", method: :get %>
+  <%= button_to "Delete Question", question_path(@question), class: "btn btn-primary", method: :delete %>
+<% end %>
+
+<br></br>
+
+<% @solutions.each do |solution| %>
   <p>
-    Submitted by <%= link_to @question.user.username_or, user_path(@question.user) %>,
-    <%= @question.formatted_date_time %>
-  </p>
-
-  Categories:
-  <% @question.categories.each do |category| %>
-    <%= link_to category.name, category_path(category) %>
-  <% end %>
-
-  <% if current_user == @question.user %>
-    <%= button_to "Edit Question", edit_question_path(@question), class: "btn btn-primary", method: :get %>
-    <%= button_to "Delete Question", question_path(@question), class: "btn btn-primary", method: :delete %>
-  <% end %>
-
-  <br></br>
-
-  <% @solutions.each do |solution| %>
-    <p>
-      <%= solution.formatted_date_time %>
-      <%= link_to solution.contributor.username_or, user_path(solution.contributor) %> says: <%= solution.content %>
-      <% if current_user %>
-        <%= form_for @vote, url: votes_path, method: :post do |f| %>
-          <%= f.hidden_field :direction, value: "up" %>
-          <%= f.hidden_field :user_id, value: current_user.id %>
-          <%= f.hidden_field :solution_id, value: solution.id %>
-          <%= f.submit "Upvote #{solution.votes.up_count}", class: "btn btn-primary" %>
-        <% end %>
-        <%= form_for @vote, url: votes_path, method: :post do |f| %>
-          <%= f.hidden_field :direction, value: "down" %>
-          <%= f.hidden_field :user_id, value: current_user.id %>
-          <%= f.hidden_field :solution_id, value: solution.id %>
-          <%= f.submit "Downvote #{solution.votes.down_count}", class: "btn btn-primary" %>
-        <% end %>
-        <% if current_user == solution.contributor %>
-          <%= button_to "Edit Answer", edit_question_solution_path(@question, solution), class: "btn btn-primary", method: :get %>
-          <%= button_to "Delete Answer", solution_path(solution), class: "btn btn-primary", method: :delete %>
-        <% end %>
+    <%= solution.formatted_date_time %>
+    <%= link_to solution.contributor.username_or, user_path(solution.contributor) %> says: <%= solution.content %>
+    <% if current_user %>
+      <%= form_for @vote, url: votes_path, method: :post do |f| %>
+        <%= f.hidden_field :direction, value: "up" %>
+        <%= f.hidden_field :user_id, value: current_user.id %>
+        <%= f.hidden_field :solution_id, value: solution.id %>
+        <%= f.submit "Upvote #{solution.votes.up_count}", class: "btn btn-primary" %>
       <% end %>
-    </p>
-  <% end %>
+      <%= form_for @vote, url: votes_path, method: :post do |f| %>
+        <%= f.hidden_field :direction, value: "down" %>
+        <%= f.hidden_field :user_id, value: current_user.id %>
+        <%= f.hidden_field :solution_id, value: solution.id %>
+        <%= f.submit "Downvote #{solution.votes.down_count}", class: "btn btn-primary" %>
+      <% end %>
+      <% if current_user == solution.contributor %>
+        <%= button_to "Edit Answer", edit_question_solution_path(@question, solution), class: "btn btn-primary", method: :get %>
+        <%= button_to "Delete Answer", solution_path(solution), class: "btn btn-primary", method: :delete %>
+      <% end %>
+    <% end %>
+  </p>
+<% end %>
 
-  <br></br>
-  <%= button_to "Add Answer", new_question_solution_path(@question), class: "btn btn-primary", method: :get %>
-
-</div>
+<br></br>
+<%= button_to "Add Answer", new_question_solution_path(@question), class: "btn btn-primary", method: :get %>

@@ -18,6 +18,10 @@ class SolutionsController < ApplicationController
   def edit
     @solution = Solution.find(params[:id])
     @question = Question.find(params[:question_id])
+    if @solution.contributor != current_user
+      flash[:alert] = "You do not have access to this page."
+      redirect_to root_path
+    end
   end
 
   def update

@@ -1,33 +1,29 @@
-<div class="container-fluid">
+<%= link_to :back do %>
+  <i class="ion-android-arrow-back"></i> Back
+<% end %>
 
-  <%= link_to :back do %>
-    <i class="ion-android-arrow-back"></i> Back
-  <% end %>
+<% if @user.id == current_user.id %>
+  <h2>My Profile</h2>
+<% else %>
+  <h2><%= @user.username_or %></h2>
+<% end %>
 
-  <% if @user.id == current_user.id %>
-    <h2>My Profile</h2>
-  <% else %>
-    <h2><%= @user.username_or %></h2>
-  <% end %>
+<p>
+  Email: <%= @user.email %>
+  <br></br>
+  Member Since: <%= @user.formatted_date_time %>
+</p>
 
-  <p>
-    Email: <%= @user.email %>
-    <br></br>
-    Member Since: <%= @user.formatted_date_time %>
-  </p>
+<% if @user.id == current_user.id %>
+  <%= button_to "Edit Profile", edit_user_registration_path, class: "btn btn-primary", method: :get %>
+<% end %>
 
-  <% if @user.id == current_user.id %>
-    <%= button_to "Edit Profile", edit_user_registration_path, class: "btn btn-primary", method: :get %>
-  <% end %>
+<h2>Questions (<%= @user.question_count %>)</h2>
+<% @questions.each do |question| %>
+  <p><%= link_to question.content, question_path(question) %>, <%= question.formatted_date_time %></p>
+<% end %>
 
-  <h2>Questions (<%= @user.question_count %>)</h2>
-  <% @questions.each do |question| %>
-    <p><%= link_to question.content, question_path(question) %>, <%= question.formatted_date_time %></p>
-  <% end %>
-
-  <h2>Answers (<%= @user.solution_count %>)</h2>
-  <% @solutions.each do |solution| %>
-    <p><%= link_to solution.question.content, question_path(solution.question) %>, <%= solution.formatted_date_time %></p>
-  <% end %>
-
-</div>
+<h2>Answers (<%= @user.solution_count %>)</h2>
+<% @solutions.each do |solution| %>
+  <p><%= link_to solution.question.content, question_path(solution.question) %>, <%= solution.formatted_date_time %></p>
+<% end %>

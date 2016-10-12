@@ -1,28 +1,24 @@
-<div class="container-fluid">
+<h2>Welcome, <%= @user_greeting %></h2>
 
-  <h2>Welcome, <%= @user_greeting %></h2>
+<%= button_to "Ask a Question", new_question_path, class: "btn btn-primary", method: :get %>
 
-  <%= button_to "Ask a Question", new_question_path, class: "btn btn-primary", method: :get %>
+<h3>Here are the most recent questions from users:</h3>
 
-  <h3>Here are the most recent questions from users:</h3>
+<% @questions.each do |question| %>
+  <p>
+    <%= link_to question.content, question_path(question) %> Submitted by <%= link_to question.user.username_or, user_path(question.user) %>, <%= question.formatted_date_time %>
+  </p>
+<% end %>
 
-  <% @questions.each do |question| %>
-    <p>
-      <%= link_to question.content, question_path(question) %> Submitted by <%= link_to question.user.username_or, user_path(question.user) %>, <%= question.formatted_date_time %>
-    </p>
-  <% end %>
+<h3>Here are the most popular questions (by number of votes):</h3>
 
-  <h3>Here are the most popular questions (by number of votes):</h3>
+<% @popular.each do |question| %>
+  <p>
+    <%= link_to question.content, question_path(question) %> Submitted by <%= link_to question.user.username_or, user_path(question.user) %>, <%= question.formatted_date_time %>
+  </p>
+<% end %>
 
-  <% @popular.each do |question| %>
-    <p>
-      <%= link_to question.content, question_path(question) %> Submitted by <%= link_to question.user.username_or, user_path(question.user) %>, <%= question.formatted_date_time %>
-    </p>
-  <% end %>
-
-  <h3>Browse questions by category:</h3>
-  <% @categories.each do |category| %>
-    <li><%= link_to category.name, category_path(category) %></li>
-  <% end %>
-
-</div>
+<h3>Browse questions by category:</h3>
+<% @categories.each do |category| %>
+  <li><%= link_to category.name, category_path(category) %></li>
+<% end %>

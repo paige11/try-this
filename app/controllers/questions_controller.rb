@@ -20,6 +20,10 @@ class QuestionsController < ApplicationController
     @question = Question.find(params[:id])
     @question.categories.build
     @categories = Category.all
+    if @question.user != current_user
+      flash[:alert] = "You do not have access to this page."
+      redirect_to root_path
+    end
   end
 
   def update
