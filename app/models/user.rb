@@ -10,9 +10,11 @@ class User < ApplicationRecord
   include ApplicationHelper
 
   def self.from_omniauth(auth)
+    byebug
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
       user.password = Devise.friendly_token[0,20]
+      # user.name = auth.info.name ADD LATER - FOR FB USERS TAKE NAME, OTHERWISE UNAVAIL?
     end
   end
 
