@@ -7,7 +7,7 @@ class Question < ApplicationRecord
   validates_presence_of :content
   validates_uniqueness_of :content
   scope :most_recent, -> { order(created_at: :desc) }
-  scope :ten_most_recent, -> { most_recent.limit(10) }
+  scope :ten_most_recent, -> { last(10) }
   scope :order_by_votes, -> { order(total_votes: :desc).limit(10) }
   include ApplicationHelper
 

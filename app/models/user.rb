@@ -10,7 +10,6 @@ class User < ApplicationRecord
   include ApplicationHelper
 
   def self.from_omniauth(auth)
-    byebug
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
       user.password = Devise.friendly_token[0,20]
@@ -27,11 +26,11 @@ class User < ApplicationRecord
   end
 
   def username_or
-    if username
-      username
-    else
-      "User"
-    end
+    username || "User"
+  end
+
+  def valid_password?(password)
+    !provider.nil? || super(password)
   end
 
 end
