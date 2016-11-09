@@ -12,11 +12,10 @@ class Question < ApplicationRecord
   scope :order_by_votes, -> { order(total_votes: :desc).limit(10) }
   include ApplicationHelper
 
-  def category_attributes=(category)
-    if !category[:name].empty?
-      category = Category.find_or_create_by(name: category[:name])
-      categories << category
-      save
+  def categories_attributes=(attr)
+    attr.values.each do |cat_info|
+      category = Category.find_or_initialize_by(cat_info)
+      self.categories << category unless category.name == ""
     end
   end
 

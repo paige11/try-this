@@ -16,7 +16,7 @@
 
   Categories <%= f.collection_check_boxes :category_ids, Category.all, :id, :name %><br>
 
-  <%= f.fields_for :category_attributes do |category| %>
+  <%= f.fields_for :categories, category do |category| %>
     New Category <%= category.text_field :name, label: :name %><br>
   <% end %>
 
