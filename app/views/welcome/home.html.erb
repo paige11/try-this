@@ -17,8 +17,3 @@
     <%= link_to question.content, question_path(question) %> Submitted by <%= link_to question.user.username_or, user_path(question.user) %>, <%= question.formatted_date_time %>
   </p>
 <% end %>
-
-<h3>Browse questions by category:</h3>
-<% @categories.each do |category| %>
-  <li><%= link_to category.name, category_path(category) %></li>
-<% end %>
