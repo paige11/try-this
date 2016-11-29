@@ -8,7 +8,7 @@ class Question < ApplicationRecord
   validates_uniqueness_of :content
   validates_presence_of :category_ids
   scope :most_recent, -> { order(created_at: :desc) }
-  scope :ten_most_recent, -> { last(10) }
+  scope :ten_most_recent, -> { last(10).reverse }
   scope :order_by_votes, -> { order(total_votes: :desc).limit(10) }
   include ApplicationHelper
 

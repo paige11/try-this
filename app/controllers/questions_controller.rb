@@ -8,14 +8,19 @@ class QuestionsController < ApplicationController
     @category = Category.new
   end
 
+  def most_recent
+    @recent = Question.ten_most_recent
+    render json: @recent
+  end
+
+  def most_popular
+    @popular = Question.order_by_votes
+    render json: @popular
+  end
+
   def create
-    @question = Question.new(question_params)
-    if @question.save
-      redirect_to question_path(@question)
-    else
-      @category = Category.new
-      render 'new'
-    end
+    @question = Question.create(question_params)
+    render json: @question
   end
 
   def edit

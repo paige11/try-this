@@ -3,9 +3,9 @@
 <% end %>
 
 <% if @user.id == current_user.id %>
-  <h2>My Profile</h2>
+  <h1>My Profile</h1>
 <% else %>
-  <h2><%= @user.username_or %></h2>
+  <h1><%= @user.username_or %></h1>
 <% end %>
 
 <p>

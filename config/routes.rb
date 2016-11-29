@@ -6,7 +6,10 @@ Rails.application.routes.draw do
 
   resources :categories, only: [:show]
 
-  resources :questions, except: [:index]
+  get '/questions/most_recent', to: 'questions#most_recent'
+  get '/questions/most_popular', to: 'questions#most_popular'
+
+  resources :questions
 
   resources :solutions, only: [:destroy]
 

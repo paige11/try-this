@@ -3,9 +3,10 @@ class WelcomeController < ApplicationController
 
   def home
     @user_greeting = user_or_guest_greeting
-    @popular = Question.order_by_votes
-    @questions = Question.ten_most_recent
-    @categories = Category.alphabetize
+    @question = Question.new
+    @question.categories.build
+    @categories = Category.all
+    @category = Category.new
   end
 
 end

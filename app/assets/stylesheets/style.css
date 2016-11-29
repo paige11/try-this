@@ -1,0 +1,13 @@
+.logo {
+ color: lightblue;
+ font-size: 185%;
+ font-family: 'Pacifico'
+}
+
+.error {
+ color: #b00058;
+}
+
+* {
+ font-family: 'Montserrat';
+}
