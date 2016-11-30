@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", registrations: 'registrations' }
 
   resources :categories, only: [:show]
+  get '/categories/:id/category_data', to: 'categories#category_data'
 
   get '/questions/most_recent', to: 'questions#most_recent'
   get '/questions/most_popular', to: 'questions#most_popular'

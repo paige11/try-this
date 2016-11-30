@@ -1,14 +1,20 @@
 <%= link_to :back do %>
   <i class="ion-android-arrow-back"></i> Back
-<% end %>
+<% end %><br></br>
 
-<h1><%= @category.name %></h1>
-<%= button_to "Ask a Question", new_question_path, class: "btn btn-primary", method: :get %><br />
+<a href="#" class="js-next" data-id="<%=@category.id%>">Next...</a>
 
-<% @questions.each do |question| %>
+<h1 class="categoryName"></h1>
+
+<div class="cat-q">
+
+
+</div>
+
+<!-- <% @questions.each do |question| %>
   <p>
     <%= link_to question.content, question_path(question) %>
     Submitted by <%= link_to question.user.username_or, user_path(question.user) %>,
     <%= question.formatted_date_time %></p>
   </p>
-<% end %>
+<% end %> -->

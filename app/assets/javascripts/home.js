@@ -1,26 +1,48 @@
-function Question(id, user_id, content, created_at, user) {
-  this.id = id;
-  this.user_id = user_id;
-  this.content = content;
-  this.created_at = created_at;
-  this.username = user.username;
-  this.format_date = () => {
-    return created_at.split("T")[0];
+class Question {
+  constructor(id, user_id, content, created_at, user) {
+    this.id = id;
+    this.user_id = user_id;
+    this.content = content;
+    this.created_at = created_at;
+    this.username = user.username;
   }
-  this.format_time = () => {
-    var time_string = created_at.split("T")[1];
+
+  formatDate() {
+    return this.created_at.split("T")[0];
+  }
+
+  formatTime() {
+    var time_string = this.created_at.split("T")[1];
     return time_string.match(/(\d{2}):(\d{2}):(\d{2})/)[0];
   }
-  this.questionLink = () => {
-    return `<a href=/questions/${id}>${content}</a>`;
+
+  questionLink() {
+    return `<a href=/questions/${this.id}>${this.content}</a>`;
   }
-  this.userLink = () => {
-    return ` <a href=/users/${user_id}>${this.username}</a>`;
+
+  userLink() {
+    return ` <a href=/users/${this.user_id}>${this.username}</a>`;
   }
-  this.format = () => {
-    return "<p>" + this.questionLink() + " Submitted by " + this.userLink() + ", " + this.format_date() + ", " + this.format_time() + "</p>";
+
+  format() {
+    return "<details id='q" + this.id + "'><summary>" + this.questionLink() + "</summary>Submitted by " + this.userLink() + ", " + this.formatDate() + ", " + this.formatTime() + "</details>";
   }
 }
+
+class Solution {
+  constructor(id, question_id, content, votes, contributor) {
+    this.id = id;
+    this.question_id = question_id;
+    this.content = content;
+    this.votes = votes;
+    this.contributor = contributor;
+  }
+
+  format() {
+    return `<p><a href='/users/${this.contributor.id}'>${this.contributor.username}</a> says: ${this.content}</p>`
+  }
+}
+
 
 function mostRecent() {
   $('#most-recent').empty();
@@ -29,19 +51,30 @@ function mostRecent() {
     response.forEach(question => {
       var q = new Question(question.id, question.user_id, question.content, question.created_at, question.user);
       $('#most-recent').append(q.format());
+      question.solutions.forEach(solution => {
+        // var s = new Solution(solution);
+        var s = new Solution(solution.id, solution.question_id, solution.content, solution.votes, solution.contributor);
+        $(`#q${q.id}`).append(s.format());
+      })
     });
   }).done(data => {$('#submit-question').removeAttr('disabled')});
 }
 
 function clearForm() {
-
+  $('form')[0].reset();
 }
 
 function mostPopular() {
+  $('#most-popular').empty();
   $.get('/questions/most_popular', response => {
+    $('#most-popular').append("<h2>Here are the most popular questions (by number of votes):</h2>");
     response.forEach(question => {
       var q = new Question(question.id, question.user_id, question.content, question.created_at, question.user);
       $('#most-popular').append(q.format());
+      question.solutions.forEach(solution => {
+        var s = new Solution(solution.id, solution.question_id, solution.content, solution.votes, solution.contributor);
+        $(`#q${q.id}`).append(s.format());
+      })
     });
   });
 }
@@ -51,14 +84,15 @@ function askQuestion(e) {
   var formData = $(this).serialize();
   $.post('/questions', formData).done(response => {
     mostRecent();
-  })
+  });
+  clearForm();
 }
 
 function questionListener() {
-  $('form').on('submit', askQuestion);
+  $('.new-question').on('submit', askQuestion);
 }
 
-$(document).ready(function() {
+$(document).on('turbolinks:load', function() {
   questionListener();
   mostRecent();
   mostPopular();

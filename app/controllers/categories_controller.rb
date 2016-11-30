@@ -6,4 +6,9 @@ class CategoriesController < ApplicationController
     @questions = @category.questions.most_recent
   end
 
+  def category_data
+    @category = Category.find(params[:id])
+    render json: @category
+  end
+
 end
