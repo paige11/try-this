@@ -1,4 +1,10 @@
-<%= form_for question, :html => {class: 'new-question'} do |f| %>
+<% if question.id %>
+  <% class_name = 'edit-question' %>
+<% else %>
+  <% class_name = 'new-question' %>
+<% end %>
+
+<%= form_for question, :html => {class: class_name} do |f| %>
 
   <% if question.errors.any? %>
       <h2><%= pluralize(question.errors.count, "error") %> prohibited this card from being saved:</h2>
@@ -10,7 +16,7 @@
     </ul>
   <% end %>
 
-  <%= f.hidden_field :user_id, value: current_user.id %>
+  <%= f.hidden_field :user_id, value: current_user.id if current_user %>
 
   Question <%= f.text_field :content, label: :content %><br>
 

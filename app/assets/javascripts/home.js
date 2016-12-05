@@ -25,7 +25,7 @@ class Question {
   }
 
   format() {
-    return "<details id='q" + this.id + "'><summary>" + this.questionLink() + "</summary>Submitted by " + this.userLink() + ", " + this.formatDate() + ", " + this.formatTime() + "</details>";
+    return "<details id='q" + this.id + "'><summary>" + this.questionLink() + "</summary><p>Submitted by " + this.userLink() + ", " + this.formatDate() + ", " + this.formatTime() + "</p></details>";
   }
 }
 
@@ -80,12 +80,26 @@ function mostPopular() {
 }
 
 function askQuestion(e) {
+  console.log('event happened');
   e.preventDefault();
   var formData = $(this).serialize();
-  $.post('/questions', formData).done(response => {
-    mostRecent();
-  });
+  $.ajax({
+    url: '/questions',
+    dataType: 'json',
+    type: 'post',
+    data: formData,
+    success: mostRecent(),
+    error: xhr => displayErrors(xhr)
+  })
+  // $.post('/questions', formData).done(response => {
+  //   mostRecent();
+  // }).fail(error => console.log("hi"))
   clearForm();
+}
+
+function displayErrors(xhr) {
+  var errors = $.parseJSON(xhr.responseText).errors;
+  $('h1').append("<div class='error'>" + errors + "</div>")
 }
 
 function questionListener() {

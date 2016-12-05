@@ -1,5 +1,5 @@
 class QuestionsController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:show]
+  skip_before_action :authenticate_user!, only: [:show, :most_recent, :most_popular]
 
   def new
     @question = Question.new
@@ -19,8 +19,12 @@ class QuestionsController < ApplicationController
   end
 
   def create
-    @question = Question.create(question_params)
-    render json: @question
+    @question = Question.new(question_params)
+    if @question.save
+      render json: @question
+    else
+      render json: { :errors => @question.errors.full_messages }, status: 422
+    end
   end
 
   def edit

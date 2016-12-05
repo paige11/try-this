@@ -1,6 +1,8 @@
 <h1>Hi, <%= @user_greeting %></h1>
 
-<%= render partial: 'questions/form', locals: { question: @question, categories: @categories, category: @category } %>
+<% if current_user %>
+  <%= render partial: 'questions/form', locals: { question: @question, categories: @categories, category: @category } %>
+<% end %>
 
 <div id="most-recent">
 

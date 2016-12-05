@@ -6,8 +6,15 @@
 
 .error {
  color: #b00058;
+ font-size: 75%;
 }
 
 * {
  font-family: 'Montserrat';
+}
+
+.round-box {
+  border: 1px solid;
+  border-color: red;
+  border-radius: 15px;
 }
