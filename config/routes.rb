@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get '/questions/most_recent', to: 'questions#most_recent'
   get '/questions/most_popular', to: 'questions#most_popular'
 
-  resources :questions
+  resources :questions, except: [:index]
 
   resources :solutions, only: [:destroy]
 
@@ -19,6 +19,6 @@ Rails.application.routes.draw do
   resources :users, only: [:show]
 
   resources :questions, only: [:show] do
-    resources :solutions, only: [:index, :new, :edit, :update, :create]
+    resources :solutions, only: [:new, :edit, :update, :create]
   end
 end

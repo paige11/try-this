@@ -1,12 +1,11 @@
 .logo {
- color: lightblue;
+ color: #44B3C2;
  font-size: 185%;
  font-family: 'Pacifico'
 }
 
 .error {
  color: #b00058;
- font-size: 75%;
 }
 
 * {
@@ -17,4 +16,11 @@
   border: 1px solid;
   border-color: red;
   border-radius: 15px;
+}
+
+.heading {
+  text-align: center;
+  font-size: 385%;
+  font-family: 'Pacifico';
+  color: #44B3C2;
 }

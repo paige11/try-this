@@ -48,11 +48,11 @@ function mostRecent() {
   $('#most-recent').empty();
   $.get('/questions/most_recent', response => {
     $('#most-recent').append("<h2>Here are the most recent questions from users:</h2>");
+    console.log(response)
     response.forEach(question => {
       var q = new Question(question.id, question.user_id, question.content, question.created_at, question.user);
       $('#most-recent').append(q.format());
       question.solutions.forEach(solution => {
-        // var s = new Solution(solution);
         var s = new Solution(solution.id, solution.question_id, solution.content, solution.votes, solution.contributor);
         $(`#q${q.id}`).append(s.format());
       })
@@ -80,7 +80,6 @@ function mostPopular() {
 }
 
 function askQuestion(e) {
-  console.log('event happened');
   e.preventDefault();
   var formData = $(this).serialize();
   $.ajax({
@@ -91,9 +90,6 @@ function askQuestion(e) {
     success: mostRecent(),
     error: xhr => displayErrors(xhr)
   })
-  // $.post('/questions', formData).done(response => {
-  //   mostRecent();
-  // }).fail(error => console.log("hi"))
   clearForm();
 }
 

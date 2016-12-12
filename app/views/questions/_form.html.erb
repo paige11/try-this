@@ -18,12 +18,12 @@
 
   <%= f.hidden_field :user_id, value: current_user.id if current_user %>
 
-  Question <%= f.text_field :content, label: :content %><br>
+  <h4>Question:</h4> <%= f.text_field :content, label: :content %><br>
 
-  Categories <%= f.collection_check_boxes :category_ids, Category.all, :id, :name %><br>
+  <h4>Categories:</h4> <%= f.collection_check_boxes :category_ids, Category.all, :id, :name %><br>
 
   <%= f.fields_for :categories, category do |category| %>
-    New Category <%= category.text_field :name, label: :name %><br>
+    <h4>New Category:</h4> <%= category.text_field :name, label: :name %><br>
   <% end %>
 
   <%= f.submit "Submit", class: "btn btn-primary", id: "submit-question" %>
