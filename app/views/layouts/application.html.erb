@@ -3,7 +3,7 @@
 
   <head>
     <%= csrf_meta_tags %>
-    <title>TRY THIS</title>
+    <title>Try This</title>
     <link rel="shortcut-icon" src>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -12,25 +12,22 @@
   </head>
 
   <body>
+    <div class="bg">
+      <header>
 
-    <header>
+        <%= render 'layouts/nav' %>
 
-      <%= render 'layouts/nav' %>
+      </header>
 
-    </header>
+      <div class="container-fluid text">
 
-    <h1 class="heading">Try This</h1>
+        <h2 class="error"><%= alert %></h2>
 
-    <div class="container-fluid text">
+        <%= yield %>
 
-      <h2 class="error"><%= alert %></h2>
+      </div>
 
-      <%= yield %>
-
-    </div>
-
-
-
+   </div>
   </body>
 
 </html>

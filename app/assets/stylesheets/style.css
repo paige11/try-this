@@ -1,26 +1,64 @@
+.bg {
+  background-color: turquoise;
+  min-height: 100vh;
+}
+
 .logo {
- color: #44B3C2;
  font-size: 185%;
+ color: white;
  font-family: 'Pacifico'
 }
 
 .error {
- color: #b00058;
+ color: red;
+ margin-top: 3%;
 }
 
 * {
  font-family: 'Montserrat';
+ text-align: center;
 }
 
 .round-box {
-  border: 1px solid;
-  border-color: red;
+  border: 2px solid;
+  border-color: #fff;
   border-radius: 15px;
+  padding: 2%;
 }
 
-.heading {
-  text-align: center;
-  font-size: 385%;
+#heading {
+  font-size: 685%;
   font-family: 'Pacifico';
-  color: #44B3C2;
+  margin-top: 5%;
+  color: white;
+}
+
+#subheading {
+  margin: 6% 0 5% 0;
+  color: white;
+}
+
+ul.nav li a, ul.nav li a:visited {
+    color: #fff !important;
+}
+
+ul.nav li a:hover, ul.nav li a:active {
+    color: #fff !important;
+}
+
+ul.nav li.active a {
+    color: #fff !important;
+}
+
+.navbar-default .navbar-nav .open .dropdown-menu>li>a,.navbar-default .navbar-nav .open .dropdown-menu {
+    background-color: #337ab7;
+    color: #fff;
+  }
+
+.btn-primary {
+  margin: 2%;
+}
+
+.inline {
+  display: inline-block;
 }

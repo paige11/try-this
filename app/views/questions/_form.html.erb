@@ -4,10 +4,9 @@
   <% class_name = 'new-question' %>
 <% end %>
 
-<%= form_for question, :html => {class: class_name} do |f| %>
-
+<%= form_for question, :html => {:class => "form-inline"} do |f| %>
   <% if question.errors.any? %>
-      <h2><%= pluralize(question.errors.count, "error") %> prohibited this card from being saved:</h2>
+      <h2><%= pluralize(question.errors.count, "error") %> prohibited this question from being saved:</h2>
 
     <ul>
       <% question.errors.full_messages.each do |msg| %>
@@ -18,13 +17,15 @@
 
   <%= f.hidden_field :user_id, value: current_user.id if current_user %>
 
-  <h4>Question:</h4> <%= f.text_field :content, label: :content %><br>
+  <h4>Ask a Question:</h4> <%= f.text_field :content, label: :content %><br>
 
-  <h4>Categories:</h4> <%= f.collection_check_boxes :category_ids, Category.all, :id, :name %><br>
+  <h4>Categories:</h4> <%= f.collection_check_boxes :category_ids, Category.all, :id, :name, :item_wrapper_class => 'checkbox' %><br>
+
 
   <%= f.fields_for :categories, category do |category| %>
     <h4>New Category:</h4> <%= category.text_field :name, label: :name %><br>
   <% end %>
+
 
   <%= f.submit "Submit", class: "btn btn-primary", id: "submit-question" %>
 <% end %>

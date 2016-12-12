@@ -1,6 +1,6 @@
 <%= form_for [question, solution] do |f| %>
   <% if solution.errors.any? %>
-      <h2><%= pluralize(solution.errors.count, "error") %> prohibited this card from being saved:</h2>
+      <h2><%= pluralize(solution.errors.count, "error") %> prohibited this solution from being saved:</h2>
 
     <ul>
       <% solution.errors.full_messages.each do |msg| %>

@@ -25,7 +25,7 @@ class Question {
   }
 
   format() {
-    return "<details id='q" + this.id + "'><summary>" + this.questionLink() + "</summary><p>Submitted by " + this.userLink() + ", " + this.formatDate() + ", " + this.formatTime() + "</p></details>";
+    return "<h3><details id='q" + this.id + "'><summary>" + this.questionLink() + "</h3><p>Submitted by " + this.userLink() + ", " + this.formatDate() + ", " + this.formatTime() + "</p></summary></details>";
   }
 }
 
@@ -39,7 +39,7 @@ class Solution {
   }
 
   format() {
-    return `<p><a href='/users/${this.contributor.id}'>${this.contributor.username}</a> says: ${this.content}</p>`
+    return `<p class="round-box"><a href='/users/${this.contributor.id}'>${this.contributor.username}</a> says: ${this.content}</p>`
   }
 }
 
@@ -48,7 +48,6 @@ function mostRecent() {
   $('#most-recent').empty();
   $.get('/questions/most_recent', response => {
     $('#most-recent').append("<h2>Here are the most recent questions from users:</h2>");
-    console.log(response)
     response.forEach(question => {
       var q = new Question(question.id, question.user_id, question.content, question.created_at, question.user);
       $('#most-recent').append(q.format());
@@ -87,7 +86,7 @@ function askQuestion(e) {
     dataType: 'json',
     type: 'post',
     data: formData,
-    success: mostRecent(),
+    success: mostRecent,
     error: xhr => displayErrors(xhr)
   })
   clearForm();
@@ -95,7 +94,7 @@ function askQuestion(e) {
 
 function displayErrors(xhr) {
   var errors = $.parseJSON(xhr.responseText).errors;
-  $('h1').append("<div class='error'>" + errors + "</div>")
+  $('h3').append("<div class='error'>" + errors + "</div>")
 }
 
 function questionListener() {

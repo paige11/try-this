@@ -1,7 +1,10 @@
-<h1>Hi, <%= @user_greeting %></h1>
+<h1 id="heading">Try This</h1>
+<h3 id="subheading"><i class="glyphicon glyphicon-hand-right"></i> Find crowdsourced solutions to everyday problems</h3>
 
 <% if current_user %>
-  <%= render partial: 'questions/form', locals: { question: @question, categories: @categories, category: @category } %>
+  <div class="round-box">
+    <%= render partial: 'questions/form', locals: { question: @question, categories: @categories, category: @category } %>
+  </div>
 <% end %>
 
 <div id="most-recent">
