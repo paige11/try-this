@@ -27,6 +27,10 @@ class Question {
   format() {
     return "<h4><details id='q" + this.id + "'><summary>" + this.questionLink() + "<div class='submitted-by'>Submitted by " + this.userLink() + ", " + this.formatDate() + ", " + this.formatTime() + "</div></h4></summary></details>";
   }
+
+  formatShow() {
+    return "<h4>" + this.questionLink() + "<div class='submitted-by'>Submitted by " + this.userLink() + ", " + this.formatDate() + ", " + this.formatTime() + "</div></h4>";
+  }
 }
 
 class Solution {
@@ -41,6 +45,10 @@ class Solution {
   format() {
     return `<p class="round-box"><a href='/users/${this.contributor.id}'>${this.contributor.username}</a> says: ${this.content}</p>`
   }
+}
+
+function addNewCat() {
+
 }
 
 function mostRecent() {
@@ -71,7 +79,7 @@ function mostPopular() {
       $('#most-popular').append(q.format());
       question.solutions.forEach(solution => {
         var s = new Solution(solution.id, solution.question_id, solution.content, solution.votes, solution.contributor);
-        $(`#most-popular #q${q.id}`).append(s.format());  
+        $(`#most-popular #q${q.id}`).append(s.format());
       })
     });
   });
