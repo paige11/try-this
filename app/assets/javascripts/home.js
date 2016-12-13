@@ -94,11 +94,11 @@ function askQuestion(e) {
 
 function displayErrors(xhr) {
   var errors = $.parseJSON(xhr.responseText).errors;
-  $('h3').append("<div class='error'>" + errors + "</div>")
+  $('.new_question').prepend("<h4 class='error'>" + errors + "</h4>");
 }
 
 function questionListener() {
-  $('.new-question').on('submit', askQuestion);
+  $('.new_question').on('submit', askQuestion);
 }
 
 $(document).on('turbolinks:load', function() {

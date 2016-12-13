@@ -1,22 +1,23 @@
 .bg {
-  background-color: turquoise;
+  background-color: #40E0D0;
   min-height: 100vh;
 }
 
 .logo {
  font-size: 185%;
- color: white;
+ color: #fff;
  font-family: 'Pacifico'
 }
 
 .error {
- color: red;
+ color: #cc0000;
  margin-top: 3%;
 }
 
 * {
  font-family: 'Montserrat';
  text-align: center;
+ color: #fff;
 }
 
 .round-box {
@@ -30,12 +31,12 @@
   font-size: 685%;
   font-family: 'Pacifico';
   margin-top: 5%;
-  color: white;
+  color: #fff;
 }
 
 #subheading {
   margin: 6% 0 5% 0;
-  color: white;
+  color: #fff;
 }
 
 ul.nav li a, ul.nav li a:visited {
@@ -59,6 +60,6 @@ ul.nav li.active a {
   margin: 2%;
 }
 
-.inline {
-  display: inline-block;
+input[type="text"] {
+  color: darkgray;
 }
