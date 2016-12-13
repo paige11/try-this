@@ -25,7 +25,7 @@ class Question {
   }
 
   format() {
-    return "<h3><details id='q" + this.id + "'><summary>" + this.questionLink() + "</h3><p>Submitted by " + this.userLink() + ", " + this.formatDate() + ", " + this.formatTime() + "</p></summary></details>";
+    return "<h4><details id='q" + this.id + "'><summary>" + this.questionLink() + "<div class='submitted-by'>Submitted by " + this.userLink() + ", " + this.formatDate() + ", " + this.formatTime() + "</div></h4></summary></details>";
   }
 }
 
@@ -43,7 +43,6 @@ class Solution {
   }
 }
 
-
 function mostRecent() {
   $('#most-recent').empty();
   $.get('/questions/most_recent', response => {
@@ -53,7 +52,7 @@ function mostRecent() {
       $('#most-recent').append(q.format());
       question.solutions.forEach(solution => {
         var s = new Solution(solution.id, solution.question_id, solution.content, solution.votes, solution.contributor);
-        $(`#q${q.id}`).append(s.format());
+        $(`#most-recent #q${q.id}`).append(s.format());
       })
     });
   }).done(data => {$('#submit-question').removeAttr('disabled')});
@@ -72,7 +71,7 @@ function mostPopular() {
       $('#most-popular').append(q.format());
       question.solutions.forEach(solution => {
         var s = new Solution(solution.id, solution.question_id, solution.content, solution.votes, solution.contributor);
-        $(`#q${q.id}`).append(s.format());
+        $(`#most-popular #q${q.id}`).append(s.format());  
       })
     });
   });
@@ -95,6 +94,7 @@ function askQuestion(e) {
 function displayErrors(xhr) {
   var errors = $.parseJSON(xhr.responseText).errors;
   $('.new_question').prepend("<h4 class='error'>" + errors + "</h4>");
+  $('#submit-question').removeAttr('disabled');
 }
 
 function questionListener() {

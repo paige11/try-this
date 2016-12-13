@@ -10,8 +10,13 @@
 }
 
 .error {
- color: #cc0000;
+ color: #df3737;
  margin-top: 3%;
+}
+
+.checkboxes-container {
+  max-width: 30%;
+  margin: 0 auto;
 }
 
 * {
@@ -25,6 +30,7 @@
   border-color: #fff;
   border-radius: 15px;
   padding: 2%;
+  margin: 5% 10% 5% 10%;
 }
 
 #heading {
@@ -35,7 +41,7 @@
 }
 
 #subheading {
-  margin: 6% 0 5% 0;
+  margin: 5% 0 5% 0;
   color: #fff;
 }
 
@@ -62,4 +68,24 @@ ul.nav li.active a {
 
 input[type="text"] {
   color: darkgray;
+}
+
+#most-popular {
+  margin: 5% 0 5% 0;
+}
+
+#most-recent h2 {
+  margin-bottom: 2%;
+}
+
+#most-popular h2 {
+  margin-bottom: 2%;
+}
+
+details {
+  margin-bottom: 2%;
+}
+
+.submitted-by {
+  font-size: 15px;
 }

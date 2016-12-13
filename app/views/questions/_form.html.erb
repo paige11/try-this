@@ -1,21 +1,12 @@
-<!-- <% if question.id %>
-  <% class_name = 'edit-question' %>
-<% else %>
-  <% class_name = 'new-question' %>
-<% end %> -->
-
 <%= form_for question do |f| %>
 
   <%= f.hidden_field :user_id, value: current_user.id if current_user %>
 
-  <div class="error">
-
-  </div>
-
   <h4>Ask a Question:</h4> <%= f.text_field :content, label: :content %><br>
 
-  <h4>Categories:</h4> <%= f.collection_check_boxes :category_ids, Category.all, :id, :name, :item_wrapper_class => 'checkbox' %><br>
-
+  <div class="checkboxes-container">
+    <h4>Categories:</h4> <%= f.collection_check_boxes :category_ids, Category.all, :id, :name %><br>
+  </div>
 
   <%= f.fields_for :categories, category do |category| %>
     <h4>New Category:</h4> <%= category.text_field :name, label: :name %><br>
