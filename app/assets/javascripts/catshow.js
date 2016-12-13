@@ -6,8 +6,8 @@ function nextCategory() {
       $('.cat-q').empty();
       $('.categoryName')[0].textContent = data.name;
       data.questions.forEach(question => {
-        var q = new Question(question.id, question.user_id, question.content, question.created_at, question.user)
-        $('.cat-q').append(q.formatShow())
+        var q = new Question(question.id, question.user_id, question.content, question.created_at, question.user);
+        $('.cat-q').append(q.formatShow());
       })
       $(".js-next").attr("data-id", data["id"]);
     })
@@ -21,8 +21,8 @@ function currentQuestions() {
       $('.cat-q').empty();
       $('.categoryName')[0].textContent = data.name;
       data.questions.forEach(question => {
-        var q = new Question(question.id, question.user_id, question.content, question.created_at, question.user)
-        $('.cat-q').append(q.formatShow())
+        var q = new Question(question.id, question.user_id, question.content, question.created_at, question.user);
+        $('.cat-q').append(q.formatShow());
       });
     });
   }
