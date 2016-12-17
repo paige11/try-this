@@ -96,3 +96,7 @@ details {
   margin-top: 3%;
   text-align: left;
 }
+
+.block-me {
+  margin: 0 auto;
+}

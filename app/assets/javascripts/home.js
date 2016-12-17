@@ -4,7 +4,7 @@ class Question {
     this.user_id = user_id;
     this.content = content;
     this.created_at = created_at;
-    this.username = user.username;
+    this.username = user.username || "User";
   }
 
   formatDate() {
