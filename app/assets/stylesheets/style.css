@@ -4,9 +4,9 @@
 }
 
 .logo {
- font-size: 185%;
+ font-size: 115%;
  color: #fff;
- font-family: 'Pacifico'
+ font-family: 'Pacifico';
 }
 
 .error {
@@ -21,7 +21,7 @@
 
 * {
  font-family: 'Montserrat';
- text-align: center;
+ /*text-align: center;*/
  color: #fff;
 }
 
@@ -36,13 +36,15 @@
 #heading {
   font-size: 685%;
   font-family: 'Pacifico';
-  margin-top: 4%;
+  margin-top: 3%;
   color: #fff;
+  text-align: center;
 }
 
 #subheading {
   margin: 4% 0 4% 0;
   color: #fff;
+  text-align: center;
 }
 
 ul.nav li a, ul.nav li a:visited {
@@ -99,4 +101,8 @@ details {
 
 .block-me {
   margin: 0 auto;
+}
+
+.panel-body p {
+  color: darkgray;
 }

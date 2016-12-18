@@ -4,7 +4,7 @@ class Question {
     this.user_id = user_id;
     this.content = content;
     this.created_at = created_at;
-    this.username = user.username || "User";
+    this.username = user.username;
   }
 
   formatDate() {
@@ -25,11 +25,21 @@ class Question {
   }
 
   format() {
-    return "<h4><details id='q" + this.id + "'><summary>" + this.questionLink() + "<div class='submitted-by'>Submitted by " + this.userLink() + ", " + this.formatDate() + ", " + this.formatTime() + "</div></h4></summary></details>";
-  }
+    // return "<h4><details id='q" + this.id + "'><summary>" + this.questionLink() + "<div class='submitted-by'>Submitted by " + this.userLink() + ", " + this.formatDate() + ", " + this.formatTime() + "</div></h4></summary></details>";
+    return `<div class="panel panel-default">
+      <div class="panel-heading" role="tab" id="heading${this.id}">
+        <h4 class="panel-title">
+          <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse${this.id}" aria-expanded="false" aria-controls="collapse${this.id}">
+            ${this.content}
+          </a>
+        </h4>
+      </div>
+      <div id="collapse${this.id}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading${this.id}">
+        <div class="panel-body">
 
-  formatShow() {
-    return "<h4>" + this.questionLink() + "<div class='submitted-by'>Submitted by " + this.userLink() + ", " + this.formatDate() + ", " + this.formatTime() + "</div></h4>";
+        </div>
+    </div>
+  </div>`
   }
 }
 
@@ -42,13 +52,18 @@ class Solution {
     this.contributor = contributor;
   }
 
-  format() {
-    return `<p class="round-box"><a href='/users/${this.contributor.id}'>${this.contributor.username}</a> says: ${this.content}</p>`
+  formatDate() {
+    return this.created_at.split("T")[0];
   }
-}
 
-function addNewCat() {
+  formatTime() {
+    var time_string = this.created_at.split("T")[1];
+    return time_string.match(/(\d{2}):(\d{2}):(\d{2})/)[0];
+  }
 
+  format() {
+    return `<p><a href='/users/${this.contributor.id}'>${this.contributor.username}</a>: ${this.content}</p>`
+  }
 }
 
 function mostRecent() {
@@ -60,7 +75,7 @@ function mostRecent() {
       $('#most-recent').append(q.format());
       question.solutions.forEach(solution => {
         var s = new Solution(solution.id, solution.question_id, solution.content, solution.votes, solution.contributor);
-        $(`#most-recent #q${q.id}`).append(s.format());
+        $(`#most-recent #collapse${q.id}-recent .panel-body`).append(s.format());
       })
     });
   }).done(data => {$('#submit-question').removeAttr('disabled')});
@@ -79,7 +94,7 @@ function mostPopular() {
       $('#most-popular').append(q.format());
       question.solutions.forEach(solution => {
         var s = new Solution(solution.id, solution.question_id, solution.content, solution.votes, solution.contributor);
-        $(`#most-popular #q${q.id}`).append(s.format());
+        $(`#most-popular #collapse${q.id}-popular .panel-body`).append(s.format());
       })
     });
   });

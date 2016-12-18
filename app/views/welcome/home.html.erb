@@ -2,7 +2,7 @@
 <h3 id="subheading"><i class="glyphicon glyphicon-hand-right"></i> Find crowdsourced solutions to everyday problems</h3>
 
 <div class="row">
-  <div class="col-md-6">
+  <div class="col-md-3">
     <% if current_user %>
       <div class="round-box">
         <%= render partial: 'questions/form', locals: { question: @question, categories: @categories, category: @category } %>
@@ -11,13 +11,17 @@
   </div>
 
 
-  <div class="col-md-6">
+  <div class="col-md-9">
     <div id="most-recent">
+      <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 
+      </div>
     </div>
 
     <div id="most-popular">
+      <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 
+      </div>
     </div>
   </div>
 </div>
